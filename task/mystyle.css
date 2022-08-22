@@ -1,0 +1,44 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    gap: 10px;
+    border: outset;
+    width: 30%;
+    margin: auto;
+    min-height: 20%;
+}
+
+html,
+body {
+    height: 100%
+}
+
+.user-input-container {
+    display: flex;
+    gap: 10px;
+}
+
+#input {
+    display: flex;
+    flex-grow: 1;
+}
+
+td {
+    display: flex;
+    justify-content: space-between;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.line {
+    border-bottom: 0.5px solid black;
+}
+
+#outer {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
