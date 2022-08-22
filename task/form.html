@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mystyle.css">
+    <title>Form</title>
+</head>
+
+<body>
+
+    <div id="outer">
+        <div id="main-container" class="main-container">
+            <div class="user-input-container">
+                <input id="input" type="text" placeholder="Imie" onkeyup="buttonEnable()">
+                <button id="btn" onclick="addUser()" disabled>Dodaj</button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script>
+    var users = [];
+
+    function deleteUser(index) {
+        users.splice(index, 1);
+        addTable();
+    }
+
+    function addUser() {
+        var userImput = document.getElementById("input");
+        users.push(userImput.value);
+        userImput.value = "";
+        addTable();
+    }
+
+    function addTable() {
+        var oldTable = document.getElementById("generated-table");
+        var mainContainer = document.getElementById("main-container");
+
+        oldTable?.remove();
+
+        var table = document.createElement('table');
+        table.id = "generated-table"
+
+        var tableBody = document.createElement('tbody');
+        table.appendChild(tableBody);
+
+        users.forEach((user, index) => {
+            var tr = document.createElement('tr');
+            if (index != users.length - 1) {
+                tr.setAttribute("class", "line");
+            }
+            tableBody.appendChild(tr);
+
+
+            var td = document.createElement('td');
+            td.appendChild(document.createTextNode(users[index]));
+            tr.appendChild(td);
+            let button = document.createElement("button");
+            button.innerHTML = "X";
+            button.id = index;
+            button.onclick = () => deleteUser(index);
+            td.appendChild(button);
+
+        });
+        
+        mainContainer.appendChild(table);
+    }
+
+    function buttonEnable() {
+        if (document.getElementById("input").value.length > 0) {
+            document.getElementById('btn').disabled = false;
+        }
+        else {
+            document.getElementById('btn').disabled = true
+        }
+    }
+
+    input.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("btn").click();
+        }
+    });
+</script>
+
+</html>
